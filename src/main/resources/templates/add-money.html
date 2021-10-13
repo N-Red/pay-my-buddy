@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Company | Transfer</title>
+    <div th:replace="commons/css :: css"></div>
+</head>
+<body>
+<header th:replace="commons/header :: header"></header>
+<main>
+    <div class="container">
+        <div class="col-sm-4 offset-sm-4 text-center">
+            <h2 class="text-green">Add Money</h2>
+            <form th:action="@{/add-money}" method="post">
+
+                <div class="form-group mt-2">
+                    <label class="text-green" for="amount">Amount:</label>
+                    <input type="number"
+                           id="amount" name="amount"
+                           class="form-control input-outline-green"
+                           placeholder="Amount"
+                           step="any"
+                           required/>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="text-green" for="nameOnCard">Name On Card:</label>
+                    <input type="text"
+                           id="nameOnCard" name="nameOnCard"
+                           class="form-control input-outline-green"
+                           placeholder="Name On Card"
+                           required/>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="text-green" for="cardNumber">Card Number:</label>
+                    <input type="number"
+                           id="cardNumber" name="cardNumber"
+                           class="form-control input-outline-green"
+                           placeholder="XXXX XXXX XXXX XXXX"
+                           required/>
+                </div>
+                <div class="form-group mt-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label class="text-green" for="expiryDate">Expiry Date:</label>
+                            <input type="date"
+                                   id="expiryDate" name="expiryDate"
+                                   class="form-control input-outline-green "
+                                   placeholder="MM/YYYY"
+                                   required/>
+                        </div>
+                        <div class="col-12 col-md-6">
+
+                            <label class="text-green" for="securityCode">Security Code:</label>
+                            <input type="number"
+                                   id="securityCode" name="securityCode"
+                                   class="form-control input-outline-green"
+                                   placeholder="XXX"
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    <label class="text-green" for="postalCode">ZIP / Postal Code:</label>
+                    <input type="text"
+                           id="postalCode" name="postalCode"
+                           class="form-control input-outline-green"
+                           placeholder="ZIP / Postal Code"
+                           required/>
+                </div>
+                <div class="form-group mt-2">
+                    <input type="submit"
+                           name="pay-submit"
+                           id="pay-submit"
+                           class="form-control btn-green btn btn-lg mt-3"
+                           value="Add"/>
+                </div>
+            </form>
+            <div class="form-group mt-2">
+                <a type="button" class=" form-control btn btn-lg btn-red mt-3" th:href="@{/transfer}">Cancel</a>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="commons/footer :: footer"></footer>
+</body>
+</html>

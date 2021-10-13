@@ -1,0 +1,67 @@
+body{
+    background-color: #FFFFFF;
+    color: #000000;
+}
+main{
+    margin-top: 100px;
+}
+
+/* ID */
+#amount{
+    border-radius: 24px;
+    background-color: white;
+    color : #000000;
+}
+
+/* CLASS */
+.transparent-nav{
+    background-color: transparent !important;
+}
+.btn-green{
+    background-color: #89C34A;
+    color: #FFFFFF;
+}
+.btn-red{
+    background-color: #FC6B6B;
+    color: #FFFFFF;
+}
+.btn-outline-green{
+    border: 1px solid #89C34A;
+    background-color: #FFFFFF;
+    color: #89C34A;
+}
+.input-outline-green{
+    border: 1px solid #89C34A;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+.text-green{
+    color: #89C34A;
+}
+.text-white{
+    color: #000000;
+}
+.svg{
+    width: 24px;
+    height: 24px;
+}
+#sidebar{
+    background-color: #89C34A;
+    background: linear-gradient(90deg, rgba(98,186,89,1) 0%, rgba(98,186,89,1) 11%, rgba(137,195,74,1) 100%);
+    padding: 13px 25px 13px 25px;
+}
+#sidebar a:hover{
+    transform: scale(1.1);
+}
+#sidebar li a{
+    color: #FFFFFF;
+}
+#sidebar li button a{
+    color: #000000;
+    font-size: 12px;
+}
+
+#navbar a:hover{
+    color: #62ba59 !important;
+    transform: scale(1.25);
+}

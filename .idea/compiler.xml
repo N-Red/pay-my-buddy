@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="model-spring" />
+        <module name="PayMyBuddy" />
+        <module name="registration-login-spring-boot-security-thymeleaf-hibernateFONCTIONNEL" />
+        <module name="registration-login-spring-boot-security-thymeleaf" />
+        <module name="PayMyBuddy2.0" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PayMyBuddy" options="-parameters" />
+      <module name="PayMyBuddy2.0" options="-parameters" />
+      <module name="model-spring" options="-parameters" />
+      <module name="registration-login-spring-boot-security-thymeleaf" options="-parameters" />
+      <module name="registration-login-spring-boot-security-thymeleaf-hibernateFONCTIONNEL" options="-parameters" />
+    </option>
+  </component>
+</project>

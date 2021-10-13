@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Company | Transfer</title>
+    <div th:replace="commons/css :: css"></div>
+</head>
+<body>
+<header th:replace="commons/header :: header"></header>
+<main>
+    <div class="container">
+        <div class="col-sm-4 offset-sm-4 text-center">
+            <h2 class="text-green">Pay A Contact</h2>
+            <form th:action="@{/pay-contact}" method="post">
+
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid email or
+                        password.
+                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="text-green" for="amount">Amount :</label>
+                    <input type="number"
+                           class="form-control input-outline-green"
+                           id="amount"
+                           name="amount"
+                           placeholder="Amount €"
+                           step="any"
+                           autofocus required>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="text-green">Email :</label>
+                    <select class="form-select input-outline-green" th:field="${transaction.email}" required>
+                        <option value="">Please choose a connection</option>
+                        <option th:each="connection : ${connections}"
+                                th:text="${connection.user2.email}"
+                                th:value="${connection.user2.email}"></option>
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="text-green" for="description">Description :</label>
+                    <input type="text"
+                           id="description" name="description"
+                           class="form-control input-outline-green"
+                           placeholder="Description"/>
+                </div>
+                <div class="form-group mt-2">
+                    <input type="submit"
+                           name="pay-submit"
+                           id="pay-submit"
+                           class="form-control btn-green btn btn-lg mt-3"
+                           value="Pay"/>
+                </div>
+            </form>
+            <div class="form-group mt-2">
+                <a type="button" class=" form-control btn btn-lg btn-red mt-3" th:href="@{/transfer}">Cancel</a>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="commons/footer :: footer"></footer>
+</body>
+</html>
