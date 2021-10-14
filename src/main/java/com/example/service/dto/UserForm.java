@@ -1,13 +1,21 @@
 package com.example.service.dto;
 
-public class ContactDto {
-
+public class UserForm {
     private String firstName;
     private String lastName;
     private String email;
-    private String message;
+    private String password;
 
-    public ContactDto() {
+    public UserForm() {
+
+    }
+
+    public UserForm(String firstName, String lastName, String email, String password) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -34,11 +42,11 @@ public class ContactDto {
         this.email = email;
     }
 
-    public String getMessage() {
-        return message;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -4,7 +4,7 @@ import com.example.model.Transaction;
 import com.example.model.User;
 import com.example.repository.TransactionRepository;
 import com.example.repository.UserRepository;
-import com.example.service.dto.TransactionDto;
+import com.example.service.dto.TransactionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +18,20 @@ public class TransactionService {
     @Autowired
     private UserRepository userRepository;
 
-    public String addTransaction(TransactionDto transactionDto, User userConnected) {
-        String param = checkBeforeAddTransaction(transactionDto, userConnected);
+    public String addTransaction(TransactionForm transactionForm, User userConnected) {
+        String param = checkBeforeAddTransaction(transactionForm, userConnected);
         if (param == "successAddTransaction") {
             Transaction transaction = new Transaction();
             transaction.setFrom(userConnected);
-            transaction.setDescription(transactionDto.getDescription());
+            transaction.setDescription(transactionForm.getDescription());
             transaction.setDate(LocalDateTime.now());
-            transaction.setAmountBeforeFee(transactionDto.getAmount());
+            transaction.setAmountBeforeFee(transactionForm.getAmount());
             transaction.setAmountAfterFee(transaction.getAmountBeforeFee() * 0.95);
 
-            User userSelected = userRepository.findByEmail(transactionDto.getEmail());
+            User userSelected = userRepository.findByEmail(transactionForm.getEmail());
             transaction.setTo(userSelected);
-            userSelected.getAccount().plus(transactionDto.getAmount());
-            userConnected.getAccount().minus(transactionDto.getAmount());
+            userSelected.getAccount().plus(transactionForm.getAmount());
+            userConnected.getAccount().minus(transactionForm.getAmount());
             transactionRepository.save(transaction);
         }
         return param;
@@ -46,19 +46,20 @@ public class TransactionService {
         return transactionList;
     }
 
-    private String checkBeforeAddTransaction(TransactionDto transactionDto, User userConnected) {
-        if (userConnected.getAccount().getBalance() < transactionDto.getAmount()) {
+    private String checkBeforeAddTransaction(TransactionForm transactionForm, User userConnected) {
+        if (userConnected.getAccount().getBalance() < transactionForm.getAmount()) {
             return "noMoneyInBalance";
-        } else if (transactionDto.getAmount() <= 0) {
+        } else if (transactionForm.getAmount() <= 0) {
             return "errorAmountInferiorZero";
-        } else if (transactionDto.getAmount().isNaN()) {
+        } else if (transactionForm.getAmount().isNaN()) {
             return "errorNan";
-        } else if (transactionDto.getAmount() == null) {
+        } else if (transactionForm.getAmount() == null) {
             return "errorNoAmount";
-        } else if (transactionDto.getEmail().isEmpty()) {
+        } else if (transactionForm.getEmail().isEmpty()) {
             return "errorEmailEmpty";
         } else {
             return "successAddTransaction";
         }
     }
+
 }

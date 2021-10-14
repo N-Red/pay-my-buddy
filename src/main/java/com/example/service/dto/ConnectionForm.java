@@ -1,13 +1,13 @@
 package com.example.service.dto;
 
-public class ConnectionDto {
+public class ConnectionForm {
     private String email;
 
-    public ConnectionDto(String email) {
+    public ConnectionForm(String email) {
         this.email = email;
     }
 
-    public ConnectionDto() {
+    public ConnectionForm() {
     }
 
     public String getEmail() {

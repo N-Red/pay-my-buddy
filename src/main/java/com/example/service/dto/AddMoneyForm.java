@@ -2,7 +2,7 @@ package com.example.service.dto;
 
 import java.sql.Date;
 
-public class AddMoneyDto {
+public class AddMoneyForm {
     private double amount;
     private String nameOnCard;
     private String cardNumber;
@@ -10,7 +10,7 @@ public class AddMoneyDto {
     private Integer securityCode;
     private String postalCode;
 
-    public AddMoneyDto() {
+    public AddMoneyForm() {
     }
 
     public double getAmount() {
@@ -63,7 +63,7 @@ public class AddMoneyDto {
 
     @Override
     public String toString() {
-        return "AddMoneyDto{" +
+        return "AddMoneyForm{" +
                 "amount=" + amount +
                 ", nameOnCard='" + nameOnCard + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +

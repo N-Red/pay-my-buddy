@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model-spring</a> &gt; <a href="index.source.html" class="el_package">com.example.service</a> &gt; <span class="el_source">TransactionService.java</span></div><h1>TransactionService.java</h1><pre class="source lang-java linenums">package com.example.service;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PayMyBuddy</a> &gt; <a href="index.source.html" class="el_package">com.example.service</a> &gt; <span class="el_source">TransactionService.java</span></div><h1>TransactionService.java</h1><pre class="source lang-java linenums">package com.example.service;
 
 import com.example.model.Transaction;
 import com.example.model.User;
 import com.example.repository.TransactionRepository;
 import com.example.repository.UserRepository;
-import com.example.service.dto.TransactionDto;
+import com.example.service.dto.TransactionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +18,20 @@ import java.util.List;
     @Autowired
     private UserRepository userRepository;
 
-    public String addTransaction(TransactionDto transactionDto, User userConnected) {
-<span class="nc" id="L22">        String param = checkBeforeAddTransaction(transactionDto, userConnected);</span>
+    public String addTransaction(TransactionForm transactionForm, User userConnected) {
+<span class="nc" id="L22">        String param = checkBeforeAddTransaction(transactionForm, userConnected);</span>
 <span class="nc bnc" id="L23" title="All 2 branches missed.">        if (param == &quot;successAddTransaction&quot;) {</span>
 <span class="nc" id="L24">            Transaction transaction = new Transaction();</span>
 <span class="nc" id="L25">            transaction.setFrom(userConnected);</span>
-<span class="nc" id="L26">            transaction.setDescription(transactionDto.getDescription());</span>
+<span class="nc" id="L26">            transaction.setDescription(transactionForm.getDescription());</span>
 <span class="nc" id="L27">            transaction.setDate(LocalDateTime.now());</span>
-<span class="nc" id="L28">            transaction.setAmountBeforeFee(transactionDto.getAmount());</span>
+<span class="nc" id="L28">            transaction.setAmountBeforeFee(transactionForm.getAmount());</span>
 <span class="nc" id="L29">            transaction.setAmountAfterFee(transaction.getAmountBeforeFee() * 0.95);</span>
 
-<span class="nc" id="L31">            User userSelected = userRepository.findByEmail(transactionDto.getEmail());</span>
+<span class="nc" id="L31">            User userSelected = userRepository.findByEmail(transactionForm.getEmail());</span>
 <span class="nc" id="L32">            transaction.setTo(userSelected);</span>
-<span class="nc" id="L33">            userSelected.getAccount().plus(transactionDto.getAmount());</span>
-<span class="nc" id="L34">            userConnected.getAccount().minus(transactionDto.getAmount());</span>
+<span class="nc" id="L33">            userSelected.getAccount().plus(transactionForm.getAmount());</span>
+<span class="nc" id="L34">            userConnected.getAccount().minus(transactionForm.getAmount());</span>
 <span class="nc" id="L35">            transactionRepository.save(transaction);</span>
         }
 <span class="nc" id="L37">        return param;</span>
@@ -46,16 +46,16 @@ import java.util.List;
 <span class="nc" id="L46">        return transactionList;</span>
     }
 
-    private String checkBeforeAddTransaction(TransactionDto transactionDto, User userConnected) {
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (userConnected.getAccount().getBalance() &lt; transactionDto.getAmount()) {</span>
+    private String checkBeforeAddTransaction(TransactionForm transactionForm, User userConnected) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (userConnected.getAccount().getBalance() &lt; transactionForm.getAmount()) {</span>
 <span class="nc" id="L51">            return &quot;noMoneyInBalance&quot;;</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        } else if (transactionDto.getAmount() &lt;= 0) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        } else if (transactionForm.getAmount() &lt;= 0) {</span>
 <span class="nc" id="L53">            return &quot;errorAmountInferiorZero&quot;;</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">        } else if (transactionDto.getAmount().isNaN()) {</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        } else if (transactionForm.getAmount().isNaN()) {</span>
 <span class="nc" id="L55">            return &quot;errorNan&quot;;</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        } else if (transactionDto.getAmount() == null) {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        } else if (transactionForm.getAmount() == null) {</span>
 <span class="nc" id="L57">            return &quot;errorNoAmount&quot;;</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        } else if (transactionDto.getEmail().isEmpty()) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        } else if (transactionForm.getEmail().isEmpty()) {</span>
 <span class="nc" id="L59">            return &quot;errorEmailEmpty&quot;;</span>
         } else {
 <span class="nc" id="L61">            return &quot;successAddTransaction&quot;;</span>

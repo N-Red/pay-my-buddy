@@ -4,7 +4,7 @@ import com.example.model.Connection;
 import com.example.model.User;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.UserRepository;
-import com.example.service.dto.ConnectionDto;
+import com.example.service.dto.ConnectionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,20 +24,15 @@ public class ConnectionService {
         return connectionList;
     }
 
-    public String addConnection(ConnectionDto connectionDto, User userConnected) {
-        String param = checkConnectionBeforeAdd(userConnected, connectionDto);
+    public String addConnection(ConnectionForm connectionForm, User userConnected) {
+        String param = checkConnectionBeforeAdd(userConnected, connectionForm);
         if (param == "connectionSuccess") {
             Connection connection = new Connection();
             connection.setUser1(userConnected);
-            connection.setUser2(userRepository.findByEmail(connectionDto.getEmail()));
+            connection.setUser2(userRepository.findByEmail(connectionForm.getEmail()));
             connectionRepository.save(connection);
         }
         return param;
-    }
-
-    public void delete(Integer id) {
-        Connection connection = connectionRepository.getById(id);
-        connectionRepository.delete(connection);
     }
 
     private List<Connection> findAllConnectionsByUser(User userConnected) {
@@ -45,8 +40,8 @@ public class ConnectionService {
                 .stream().filter(connection -> connection.getUser1().equals(userConnected)).collect(Collectors.toList());
     }
 
-    private String checkConnectionBeforeAdd(User userConnected, ConnectionDto connectionDto) {
-        User userSelected = userRepository.findByEmail(connectionDto.getEmail());
+    private String checkConnectionBeforeAdd(User userConnected, ConnectionForm connectionForm) {
+        User userSelected = userRepository.findByEmail(connectionForm.getEmail());
         List<Connection> connectionList = this.findAllConnectionsByUser(userConnected);
         if (userSelected != null) {
             for (Connection connection : connectionList) {
@@ -55,7 +50,7 @@ public class ConnectionService {
                 }
             }
         }
-        if (connectionDto.getEmail().isEmpty()) {
+        if (connectionForm.getEmail().isEmpty()) {
             return "noEmailInForm";
         } else if (userSelected == null) {
             return "userSelectedNotInDB";

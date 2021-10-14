@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.model.Account;
 import com.example.model.User;
 import com.example.service.ConnectionService;
 import com.example.service.TransactionService;
@@ -38,30 +37,30 @@ public class TransferController {
 
     @GetMapping("/pay-contact")
     public String getPayContactPage(Model model) {
-        model.addAttribute("transaction", new TransactionDto());
+        model.addAttribute("transaction", new TransactionForm());
         User userConnected = userService.findByEmail(getAuthentication().getName());
         model.addAttribute("connections", userService.findAllConnectionsByUser(userConnected));
         return "pay-contact";
     }
 
     @PostMapping("/pay-contact")
-    public String payContact(@ModelAttribute("pay-contact") TransactionDto transactionDto) {
+    public String payContact(@ModelAttribute("pay-contact") TransactionForm transactionForm) {
         User userConnected = userService.findByEmail(getAuthentication().getName());
-        String param = transactionService.addTransaction(transactionDto, userConnected);
+        String param = transactionService.addTransaction(transactionForm, userConnected);
         System.out.println(param);
         return "redirect:/transfer?" + param;
     }
 
     @GetMapping("/add-money")
     public String getAddMoneyPage(Model model) {
-        model.addAttribute("account", new AddMoneyDto());
+        model.addAttribute("account", new AddMoneyForm());
         return "add-money";
     }
 
     @PostMapping("/add-money")
-    public String addMoney(@ModelAttribute("add-money") AddMoneyDto addMoneyDto) {
+    public String addMoney(@ModelAttribute("add-money") AddMoneyForm addMoneyForm) {
         User userConnected = userService.findByEmail(getAuthentication().getName());
-        String param = userService.addMoney(addMoneyDto, userConnected);
+        String param = userService.addMoney(addMoneyForm, userConnected);
         return "redirect:/transfer?" + param;
     }
 }

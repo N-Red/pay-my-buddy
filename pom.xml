@@ -12,7 +12,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>model-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>model-spring</name>
+	<name>PayMyBuddy</name>
 	<description>Demo project for Spring Boot Thymeleaf and Hibernate </description>
 
 	<properties>

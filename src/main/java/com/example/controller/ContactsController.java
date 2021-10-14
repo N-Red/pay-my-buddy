@@ -3,7 +3,7 @@ package com.example.controller;
 import com.example.model.User;
 import com.example.service.ConnectionService;
 import com.example.service.UserService;
-import com.example.service.dto.ConnectionDto;
+import com.example.service.dto.ConnectionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,19 +30,20 @@ public class ContactsController {
         User userConnected = userService.findByEmail(getAuthentication().getName());
         model.addAttribute("connections", connectionService.findConnectionByUser(userConnected));
         model.addAttribute("user", userConnected);
+
         return "contacts";
     }
 
     @GetMapping("/add-contact")
     public String getAddContactPage(Model model) {
-        model.addAttribute("connection", new ConnectionDto());
+        model.addAttribute("connection", new ConnectionForm());
         return "add-contact";
     }
 
     @PostMapping("/add-contact")
-    public String addContact(@ModelAttribute("add-contact") ConnectionDto connectionDto) {
+    public String addContact(@ModelAttribute("add-contact") ConnectionForm connectionForm) {
         User userConnected = userService.findByEmail(getAuthentication().getName());
-        String param = connectionService.addConnection(connectionDto, userConnected);
+        String param = connectionService.addConnection(connectionForm, userConnected);
         return "redirect:/transfer?" + param;
     }
 

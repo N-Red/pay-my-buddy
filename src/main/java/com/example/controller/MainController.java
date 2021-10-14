@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.service.dto.ContactUsDto;
+import com.example.service.dto.ContactUsForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping("/contact-us")
     public String contactPage(Model model) {
-        model.addAttribute("user", new ContactUsDto());
+        model.addAttribute("user", new ContactUsForm());
         return "contact-us";
     }
 

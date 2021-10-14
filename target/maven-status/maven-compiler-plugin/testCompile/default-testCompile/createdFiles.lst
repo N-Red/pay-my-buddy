@@ -1,1 +1,4 @@
+com\example\service\ConnectionServiceTest.class
+com\example\service\TransactionServiceTest.class
+com\example\service\UserServiceTest.class
 com\example\springboot\ApplicationTests.class

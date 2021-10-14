@@ -10,19 +10,13 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRANSFER_SEQ")
     @SequenceGenerator(name = "TRANSFER_SEQ", sequenceName = "TRANSFER_SEQ", allocationSize = 1)
     private Integer id;
-
     private LocalDateTime date;
-
     @ManyToOne
     private User from;
-
     @ManyToOne
     private User to;
-
     private Double amountBeforeFee;
-
     private Double amountAfterFee;
-
     private String description;
 
     public Transaction(Integer id, LocalDateTime date, User from, User to, Double amountBeforeFee, Double amountAfterFee, String description) {

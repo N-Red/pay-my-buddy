@@ -1,17 +1,17 @@
 package com.example.service.dto;
 
-public class TransactionDto {
+public class TransactionForm {
     private String email;
     private Double amount;
     private String description;
 
-    public TransactionDto(String email, Double amount, String description) {
+    public TransactionForm(String email, Double amount, String description) {
         this.email = email;
         this.amount = amount;
         this.description = description;
     }
 
-    public TransactionDto() {
+    public TransactionForm() {
     }
 
     public String getEmail() {

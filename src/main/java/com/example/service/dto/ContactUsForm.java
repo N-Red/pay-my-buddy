@@ -1,6 +1,6 @@
 package com.example.service.dto;
 
-public class ContactUsDto {
+public class ContactUsForm {
     private String firstName;
     private String lastName;
     private String email;

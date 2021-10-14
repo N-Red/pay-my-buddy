@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.service.dto.UserRegistrationDto;
+import com.example.service.dto.UserForm;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,13 @@ public class UserRegistrationController {
 
     @GetMapping
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new UserRegistrationDto());
+        model.addAttribute("user", new UserForm());
         return "registration";
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-        userService.save(registrationDto);
+    public String registerUserAccount(@ModelAttribute("user") UserForm registrationDto) {
+        userService.addUser(registrationDto);
         return "login";
     }
 

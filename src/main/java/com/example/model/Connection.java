@@ -9,15 +9,12 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONNECTION_SEQ")
     @SequenceGenerator(name = "CONNECTION_SEQ", sequenceName = "CONNECTION_SEQ", allocationSize = 1)
     Integer id;
-
     @ManyToOne
     User user1;
-
     @ManyToOne
     User user2;
 
-    public Connection(Integer id, User user1, User user2) {
-        this.id = id;
+    public Connection(User user1, User user2) {
         this.user1 = user1;
         this.user2 = user2;
     }
