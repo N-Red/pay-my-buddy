@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model-spring</a> &gt; <a href="index.source.html" class="el_package">com.example.model</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package com.example.model;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;USER_SEQ&quot;)
+    @SequenceGenerator(name = &quot;USER_SEQ&quot;, sequenceName = &quot;USER_SEQ&quot;, allocationSize = 1)
+    private Integer id;
+
+    private String firstName;
+
+    private String lastName;
+
+    @Column(unique = true)
+    private String email;
+
+    private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set&lt;Connection&gt; connections;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Account account;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = &quot;users_roles&quot;,
+            joinColumns = @JoinColumn(
+                    name = &quot;user_id&quot;, referencedColumnName = &quot;id&quot;),
+            inverseJoinColumns = @JoinColumn(
+                    name = &quot;role_id&quot;, referencedColumnName = &quot;id&quot;))
+    private Collection&lt;Role&gt; roles;
+
+<span class="nc" id="L40">    public User(String firstName, String lastName, String email, String password, List&lt;Role&gt; roles) {</span>
+<span class="nc" id="L41">        this.firstName = firstName;</span>
+<span class="nc" id="L42">        this.lastName = lastName;</span>
+<span class="nc" id="L43">        this.email = email;</span>
+<span class="nc" id="L44">        this.password = password;</span>
+<span class="nc" id="L45">        this.roles = roles;</span>
+
+<span class="nc" id="L47">    }</span>
+
+<span class="fc" id="L49">    public User() {</span>
+<span class="fc" id="L50">    }</span>
+
+    public Integer getId() {
+<span class="nc" id="L53">        return id;</span>
+    }
+
+    public void setId(Integer id) {
+<span class="nc" id="L57">        this.id = id;</span>
+<span class="nc" id="L58">    }</span>
+
+    public String getFirstName() {
+<span class="nc" id="L61">        return firstName;</span>
+    }
+
+    public void setFirstName(String firstName) {
+<span class="nc" id="L65">        this.firstName = firstName;</span>
+<span class="nc" id="L66">    }</span>
+
+    public String getLastName() {
+<span class="nc" id="L69">        return lastName;</span>
+    }
+
+    public void setLastName(String lastName) {
+<span class="nc" id="L73">        this.lastName = lastName;</span>
+<span class="nc" id="L74">    }</span>
+
+    public String getEmail() {
+<span class="nc" id="L77">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="nc" id="L81">        this.email = email;</span>
+<span class="nc" id="L82">    }</span>
+
+    public String getPassword() {
+<span class="nc" id="L85">        return password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="nc" id="L89">        this.password = password;</span>
+<span class="nc" id="L90">    }</span>
+
+    public Set&lt;Connection&gt; getConnections() {
+<span class="nc" id="L93">        return connections;</span>
+    }
+
+    public void setConnections(Set&lt;Connection&gt; connections) {
+<span class="nc" id="L97">        this.connections = connections;</span>
+<span class="nc" id="L98">    }</span>
+
+    public Account getAccount() {
+<span class="nc" id="L101">        return account;</span>
+    }
+
+    public void setAccount(Account account) {
+<span class="nc" id="L105">        this.account = account;</span>
+<span class="nc" id="L106">    }</span>
+
+    public Collection&lt;Role&gt; getRoles() {
+<span class="nc" id="L109">        return roles;</span>
+    }
+
+    public void setRoles(Collection&lt;Role&gt; roles) {
+<span class="nc" id="L113">        this.roles = roles;</span>
+<span class="nc" id="L114">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
