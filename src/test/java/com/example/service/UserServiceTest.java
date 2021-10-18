@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.model.User;
-import com.example.service.dto.UserForm;
+import com.example.service.form.UserForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,6 @@ class UserServiceTest {
     void findAllUsersTest() {
     }
 
-
     @Test
     void findByEmailTest() {
     }
@@ -63,6 +62,5 @@ class UserServiceTest {
     @Test
     void findAllConnectionsByUserTest() {
     }
-
 
 }

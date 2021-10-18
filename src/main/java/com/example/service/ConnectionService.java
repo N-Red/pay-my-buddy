@@ -4,7 +4,7 @@ import com.example.model.Connection;
 import com.example.model.User;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.UserRepository;
-import com.example.service.dto.ConnectionForm;
+import com.example.service.form.ConnectionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class ConnectionService {
         return connectionList;
     }
 
-    public String addConnection(ConnectionForm connectionForm, User userConnected) {
+    public String createConnection(ConnectionForm connectionForm, User userConnected) {
         String param = checkConnectionBeforeAdd(userConnected, connectionForm);
         if (param == "connectionSuccess") {
             Connection connection = new Connection();

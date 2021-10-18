@@ -4,7 +4,7 @@ import com.example.model.Transaction;
 import com.example.model.User;
 import com.example.repository.TransactionRepository;
 import com.example.repository.UserRepository;
-import com.example.service.dto.TransactionForm;
+import com.example.service.form.TransactionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class TransactionService {
     @Autowired
     private UserRepository userRepository;
 
-    public String addTransaction(TransactionForm transactionForm, User userConnected) {
+    public String createTransaction(TransactionForm transactionForm, User userConnected) {
         String param = checkBeforeAddTransaction(transactionForm, userConnected);
         if (param == "successAddTransaction") {
             Transaction transaction = new Transaction();
@@ -37,8 +37,16 @@ public class TransactionService {
         return param;
     }
 
-    public List<Transaction> findAll() {
-        return transactionRepository.findAll();
+    public Transaction readTransaction(Integer id) {
+        return transactionRepository.findById(id).get();
+    }
+
+    public void updateTransaction() {
+
+    }
+
+    public void deleteTransaction(Transaction transaction) {
+        transactionRepository.delete(transaction);
     }
 
     public List<Transaction> findAllTransactionByUser(User user) {
@@ -61,5 +69,4 @@ public class TransactionService {
             return "successAddTransaction";
         }
     }
-
 }

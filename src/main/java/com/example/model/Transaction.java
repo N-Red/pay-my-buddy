@@ -19,8 +19,7 @@ public class Transaction {
     private Double amountAfterFee;
     private String description;
 
-    public Transaction(Integer id, LocalDateTime date, User from, User to, Double amountBeforeFee, Double amountAfterFee, String description) {
-        this.id = id;
+    public Transaction(LocalDateTime date, User from, User to, Double amountBeforeFee, Double amountAfterFee, String description) {
         this.date = date;
         this.from = from;
         this.to = to;

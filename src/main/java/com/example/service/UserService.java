@@ -9,8 +9,8 @@ import com.example.model.Account;
 import com.example.model.Connection;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.UserRepository;
-import com.example.service.dto.AddMoneyForm;
-import com.example.service.dto.UserForm;
+import com.example.service.form.AddMoneyForm;
+import com.example.service.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -53,11 +53,11 @@ public class UserService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
-    public User addUser(UserForm registrationDto) {
-        User user = new User(registrationDto.getFirstName(),
-                registrationDto.getLastName(),
-                registrationDto.getEmail(),
-                passwordEncoder.encode(registrationDto.getPassword()),
+    public User addUser(UserForm userForm) {
+        User user = new User(userForm.getFirstName(),
+                userForm.getLastName(),
+                userForm.getEmail(),
+                passwordEncoder.encode(userForm.getPassword()),
                 Arrays.asList(new Role("ROLE_USER"))
         );
         Account account = new Account();
