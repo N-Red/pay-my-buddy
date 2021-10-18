@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.service.dto.ContactUsForm;
+import com.example.service.form.ContactUsForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

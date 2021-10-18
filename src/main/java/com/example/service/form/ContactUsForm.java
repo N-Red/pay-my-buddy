@@ -1,14 +1,10 @@
-package com.example.service.dto;
+package com.example.service.form;
 
-public class ContactForm {
-
+public class ContactUsForm {
     private String firstName;
     private String lastName;
     private String email;
     private String message;
-
-    public ContactForm() {
-    }
 
     public String getFirstName() {
         return firstName;

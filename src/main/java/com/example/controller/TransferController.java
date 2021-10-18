@@ -4,7 +4,7 @@ import com.example.model.User;
 import com.example.service.ConnectionService;
 import com.example.service.TransactionService;
 import com.example.service.UserService;
-import com.example.service.dto.*;
+import com.example.service.form.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,10 +44,9 @@ public class TransferController {
     }
 
     @PostMapping("/pay-contact")
-    public String payContact(@ModelAttribute("pay-contact") TransactionForm transactionForm) {
+    public String createTransaction(@ModelAttribute("pay-contact") TransactionForm transactionForm) {
         User userConnected = userService.findByEmail(getAuthentication().getName());
-        String param = transactionService.addTransaction(transactionForm, userConnected);
-        System.out.println(param);
+        String param = transactionService.createTransaction(transactionForm, userConnected);
         return "redirect:/transfer?" + param;
     }
 
@@ -63,4 +62,5 @@ public class TransferController {
         String param = userService.addMoney(addMoneyForm, userConnected);
         return "redirect:/transfer?" + param;
     }
+
 }

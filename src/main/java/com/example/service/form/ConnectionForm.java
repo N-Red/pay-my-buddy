@@ -1,4 +1,4 @@
-package com.example.service.dto;
+package com.example.service.form;
 
 public class ConnectionForm {
     private String email;

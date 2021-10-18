@@ -1,4 +1,4 @@
-package com.example.service.dto;
+package com.example.service.form;
 
 import java.sql.Date;
 
