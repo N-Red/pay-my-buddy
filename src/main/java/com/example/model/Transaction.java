@@ -2,6 +2,7 @@ package com.example.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 public class Transaction {

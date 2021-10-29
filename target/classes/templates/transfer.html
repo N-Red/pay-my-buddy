@@ -1,82 +1,109 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Company | Login</title>
-    <head th:replace="commons/css :: css"></head>
+    <title>Company | Transfer</title>
+    <head th:replace="commons/css::css"></head>
 </head>
 <body>
-
-<header th:replace="commons/header :: header"></header>
-
+<header th:replace="commons/header::header"></header>
 <main>
-    <div class="container">
-        <div class="row">
-            <div th:if="${param.successAddTransaction}">
-                <div class="alert alert-info">You've successfully pay a contact!
-                </div>
-                <div th:if="${param.userAlreadyInYourConnection}">
-                    <div class="alert alert-info">User is already in your contacts!
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 offset-md-0">
-                <nav id="sidebar" class="nav nav-pills flex-column mb-auto">
-                    <h2 class="text-white text-center">Balance</h2>
-                    <div id="amount" class="text-center">
-                        <span th:text="${user.account.balance}">0.00</span> €
-                    </div>
-                    <hr>
-                    <ul class="nav nav-pills flex-column mb-1">
-                        <li class="nav-items">
-                            <a th:href="@{/add-money}" class="nav-link">
-                                <img class="svg" src="img/add.svg">Add Money
-                            </a>
-                        </li>
-                        <li class="nav-items">
-                            <a th:href="@{/pay-contact}" class="nav-link">
-                                <img class="svg" src="img/pay.svg">Pay a Contact
-                            </a>
-                        </li>
-                        <li class="nav-items">
-                            <a th:href="@{/transfer}" class="nav-link">
-                                <img class="svg" src="img/transaction.svg">My Transactions
-                            </a>
-                        </li>
-                        <li class="nav-items">
-                            <a th:href="@{/contacts}" class="nav-link">
-                                <img class="svg" src="img/contacts.svg">My Contacts
-                            </a>
-                        </li>
-                    </ul>
-                    <hr>
-                    <div class="row">
-                        <a class="btn btn-sm btn-outline-green col-5" type="button" th:href="@{/profile}">Edit Profile
-                            <img class="svg" src="img/setting.svg">
-                        </a>
-                        <a class="btn btn-sm btn-red col-5 offset-1" type="button" th:href="@{/logout}">Log out
-                            <img class="svg" src="img/logout.svg">
-                        </a>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-10 col-md-9 offset-1 offset-md-0">
-                <a type="button" class="btn btn-sm btn-green text-center m-auto" th:href="@{/add-contact}">
-                    <img class="svg" src="img/add.svg">Add A Contact
+    <div class="container-fluid bg-green p-md-3 p-0 text-center mb-5" id="nav-buttons">
+        <ul class="list-group list-group-horizontal-md justify-content-around">
+            <li class="list-group-item list-group-flush bg-none border-0">
+                <a type="button" href="#" th:href="@{/add-money}">
+                    <div class="text-center text-white">Balance</div>
+                    <div class="text-center bg-white text-black p-2"><span
+                            th:text="${user.account.balance}">Balance</span><span>€</span></div>
                 </a>
-                <a type="button" class="btn btn-sm btn-green text-center m-auto" th:href="@{/pay-contact}">
-                    <img class="svg" src="img/pay.svg">Pay a Contact
-                </a>
-                <div id="transactions-table">
-                    <caption><h2 class="text-green">My Transactions</h2></caption>
+            </li>
+            <li class="list-group-item list-group-flush bg-none border-0">
+                <a type="button" href="#" th:href="@{/add-money}"><img src="img/add.svg"><span>Add Money</span></a>
+            </li>
+            <li class="list-group-item list-group-flush bg-none border-0">
+                <a type="button" href="#" th:href="@{/add-contact}"><img src="img/add.svg"><span>Add Contact</span></a>
+            </li>
+            <li class="list-group-item list-group-flush bg-none border-0">
+                <a type="button" href="#" th:href="@{/pay-contact}"><img
+                        src="img/pay.svg"><span>Pay a Contact</span></a>
+            </li>
+            <li class="list-group-item list-group-flush bg-none border-0">
+                <a type="button" href="#"><img src="img/transaction.svg"><span>My Transactions</span></a>
+            </li>
+            <li class="list-group-item list-group-flush bg-none border-0">
+                <a type="button" href="#"><img src="img/contact.svg"><span>My Contacts</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div id="search-transaction" class="col-md-3 col-12 container border-green p-3">
+                <h2 class="text-green text-center mb-5">Search</h2>
+                <form class="form" th:action="@{/transfer}" th:object="${searchTransactionForm}" method="get">
+                    <div class="mt-2">
+                        <label class="text-green"><u>Amount :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="number" placeholder="Min" name="amountMin" th:name="amountMin"
+                                       class="col-10 input-outline-green">
+                            </div>
+                            <div class="offset-1">
+                                <input type="number" placeholder="Max" name="amountMax" th:name="amountMax"
+                                       class="col-10 input-outline-green">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="text-green"><u>Date :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="date" placeholder="DD/MM/YYYY" class="col-10 input-outline-green"
+                                       th:name="startDate">
+                            </div>
+                            <div class="offset-1">
+                                <input type="date" placeholder="DD/MM/YYYY" class="col-10 input-outline-green"
+                                       th:name="endDate">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="text-green"><u>Contact :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="text" placeholder="email" name="email" class="col-10 input-outline-green"
+                                       th:name="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="text-green"><u>Description :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="text" placeholder="Description" name="description" th:name="description"
+                                       class="col-10 input-outline-green">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                            <span>
+                                <input type="submit" value="Search" class="btn btn-sm btn-green col-5">
+                            </span>
+                        <span>
+                                <button type="reset" class="btn btn-sm btn-red col-5 offset-1">Reset</button>
+                            </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8 offset-md-1 col-12 offset-0">
+                <h2 class="text-green">My Transactions</h2>
+                <div id="transactions-table" class="border-green">
                     <table class="table">
-                        <thead>
+                        <thead class="bg-green text-center">
                         <tr>
-                            <th>Date</th>
-                            <th>Contact</th>
-                            <th>Amount</th>
-                            <th>Description</th>
+                            <th class="text-white">Date</th>
+                            <th class="text-white">Contact</th>
+                            <th class="text-white">Amount</th>
+                            <th class="text-white">Description</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -91,8 +118,72 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div id="search-connection" class="col-md-3 col-12 container border-green p-3">
+                <h2 class="text-green text-center mb-5">Search</h2>
+                <form class="form" th:action="@{/transfer}" th:object="${searchConnectionForm}" method="get">
+                    <div class="mt-2">
+                        <label class="text-green"><u>Email :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="text" placeholder="email" name="email" class="col-10 input-outline-green"
+                                       th:name="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="text-green"><u>First Name :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="text" placeholder="First Name" name="firstName" class="col-10 input-outline-green"
+                                       th:name="firstName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="text-green"><u>Last Name :</u></label>
+                        <div class="row justify-content-around">
+                            <div class="offset-1">
+                                <input type="text" placeholder="Last Name" name="lastName" class="col-10 input-outline-green"
+                                       th:name="lastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                            <span>
+                                <input type="submit" value="Search" class="btn btn-sm btn-green col-5">
+                            </span>
+                        <span>
+                                <button type="reset" class="btn btn-sm btn-red col-5 offset-1">Reset</button>
+                            </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8 offset-md-1 col-12 offset-0">
+                <h2 class="text-green">My Connections</h2>
+                <div id="connections-table" class="border-green text-center">
+                    <table class="table">
+                        <thead class="bg-green">
+                        <tr>
+                            <th class="text-white">Email</th>
+                            <th class="text-white">FirstName</th>
+                            <th class="text-white">LastName</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="connection : ${connections}">
+                            <td th:text="${connection.user2.email}">Email</td>
+                            <td th:text="${connection.user2.firstName}">FirstName</td>
+                            <td th:text="${connection.user2.lastName}">LastName</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
-<footer th:replace="commons/footer :: footer"></footer>
+<footer th:replace="commons/footer::footer"></footer>
 </body>
 </html>

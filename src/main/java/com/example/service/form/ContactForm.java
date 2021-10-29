@@ -1,14 +1,10 @@
 package com.example.service.form;
 
 public class ContactForm {
-
     private String firstName;
     private String lastName;
     private String email;
     private String message;
-
-    public ContactForm() {
-    }
 
     public String getFirstName() {
         return firstName;

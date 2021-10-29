@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Company | Register</title>
+    <div th:replace="commons/css :: css"></div>
+</head>
+<body>
+
+<header th:replace="commons/header :: header"></header>
+<main>
+    <div class="container-fluid text-center">
+        Register INFO
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-10 offset-1 col-lg-4 offset-lg-4">
+                <form th:action="@{/register}" th:object="${registerForm}" method="post"
+                      class="form text-center text-green">
+                    <div class="row mb-5">
+                        <h2><u>Register</u></h2>
+                    </div>
+                    <div class="row mb-2">
+                        <div>First Name</div>
+                        <div>
+                            <input type="text" th:field="*{firstName}" placeholder="First Name"
+                                   class="form-control input-outline-green" name="firstName">
+                            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-red"></p>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div>Last Name</div>
+                        <div>
+                            <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control input-outline-green">
+                            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-red"></p>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div>Email</div>
+                        <div>
+                            <input type="email" th:field="*{email}" placeholder="Email" class="form-control input-outline-green">
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red"></p>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div>Password</div>
+                        <div>
+                            <input type="password" th:field="*{password}" placeholder="Password" class="form-control input-outline-green">
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red"></p>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div>Confirm Password</div>
+                        <div>
+                            <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password"
+                                   class="form-control input-outline-green">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <input type="submit" value="Register" class="btn btn-green">
+                    </div>
+                </form>
+                <div class="row mt-3">
+                    <a type="button" th:href="@{/index}" class="btn btn-red">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="commons/footer :: footer"></footer>
+</body>
+</html>

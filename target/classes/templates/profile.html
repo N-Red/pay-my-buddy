@@ -8,53 +8,49 @@
 <body>
 <header th:replace="commons/header :: header"></header>
 <main>
-    <!--  <div class="container">-->
-    <!--    <h1>PROFILE</h1>-->
-    <!--    <div sec:authorize="isAuthenticated()">Hello <span sec:authentication="name">Name</span></div>-->
-    <!--    <div></div>-->
-    <!--  </div>-->
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5"
-                         width="150px"
-                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold" th:text="${user.firstName}"></span>
-                    <span class="font-weight-bold" th:text="${user.lastName}"></span>
-                    <span class="text-black-50" th:text="${user.email}"></span>
-                </div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
+    <div class="container-fluid text-center">
+        Profile INFO
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-10 offset-1 col-lg-4 offset-lg-4">
+                <form th:action="@{/profile}" th:object="${editProfileForm}" method="post"
+                      class="form text-center text-green">
+                    <div class="row mb-5">
+                        <h2><u>Edit Profile</u></h2>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">First Name</label>
-                            <input type="text" class="form-control"
-                                   placeholder="First Name"
-                                   value="">
+                    <div class="row mb-2">
+                        <div>First Name</div>
+                        <div>
+                            <input type="text" th:field="*{firstName}" placeholder="First Name"
+                                   class="form-control input-outline-green">
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Last Name</label>
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Last Name"
-                                   value="">
+                    <div class="row mb-2">
+                        <div>Last Name</div>
+                        <div>
+                            <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control input-outline-green">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div>Password</div>
+                        <div>
+                            <input type="password" th:field="*{password}" placeholder="Password" class="form-control input-outline-green">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div>Confirm Password</div>
+                        <div>
+                            <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password"
+                                   class="form-control input-outline-green">
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label>
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Phone Number"
-                                   value=""></div>
-                        <div class="mt-5 text-center">
-                            <button class="btn btn-primary" type="button" th>Save Profile</button>
-                        </div>
+                        <input type="submit" value="Edit" class="btn btn-green">
                     </div>
+                </form>
+                <div class="row mt-3">
+                    <a type="button" th:href="@{/transfer}" class="btn btn-red">Cancel</a>
                 </div>
             </div>
         </div>

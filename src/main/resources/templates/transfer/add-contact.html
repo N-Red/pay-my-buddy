@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Company | Transfer</title>
+    <div th:replace="commons/css :: css"></div>
+</head>
+<body>
+<header th:replace="commons/header :: header"></header>
+<main>
+    <div class="container text-center">
+        <h2 class="text-green mt-5 mb-5"><u>Add A Contact</u></h2>
+        <form th:action="@{/add-contact}" th:object="${addContactForm}" method="post" class="form">
+            <div class="text-green">Email :</div>
+            <div class="mt-2 mb-5">
+                <input type="email" id="email" name="email" placeholder="Enter email" class="input-outline-green col-4">
+            </div>
+            <div class="mt-5">
+                <input type="submit" value="Add Contact" class="btn btn-green col-4">
+            </div>
+            <div class="mt-2">
+                <input type="reset" value="Reset" class="btn btn-red col-4">
+            </div>
+        </form>
+    </div>
+</main>
+<footer th:replace="commons/footer :: footer"></footer>
+</body>
+</html>

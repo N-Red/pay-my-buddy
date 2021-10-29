@@ -12,10 +12,9 @@ public class AdminController {
     private UserService userService;
 
     @GetMapping("/admin")
-    public String profilePage(Model model) {
+    public String getProfilePage(Model model) {
         model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("countUsers",userService.countUsers());
-        return "admin/admin";
+        model.addAttribute("countUsers", userService.countUsers());
+        return "admin";
     }
-
 }

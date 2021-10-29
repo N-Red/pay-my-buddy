@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +31,9 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    public User() {
+    }
+
     public User(String firstName, String lastName, String email, String password, List<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,9 +41,6 @@ public class User {
         this.password = password;
         this.roles = roles;
 
-    }
-
-    public User() {
     }
 
     public Integer getId() {

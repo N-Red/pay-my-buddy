@@ -1,25 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 body{
     background-color: #FFFFFF;
     color: #000000;
+    font-family: 'Noto Sans', sans-serif;
 }
-main{
-    margin-top: 100px;
+li{
+    list-style: none;
 }
-
-/* ID */
-#amount{
-    border-radius: 24px;
-    background-color: white;
-    color : #000000;
-}
-
-/* CLASS */
-.transparent-nav{
-    background-color: transparent !important;
-}
-.btn-green{
-    background-color: #89C34A;
+a{
     color: #FFFFFF;
+}
+a:link{
+    color: #FFFFFF;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover{
+    transform: scale(1.1);
+}
+/* ID */
+#transactions-table , #connections-table{
+    min-height: 300px;
+    border-radius: 0px;
+}
+#search-transaction, #search-connection{
+  border-width: 1px;
+  max-height: 400px;
+}
+/* CLASS */
+.btn-green{
+    background: linear-gradient(90deg, rgba(98,186,89,1) 0%, rgba(98,186,89,1) 15%, rgba(137,195,74,1) 100%);
+    color: #FFFFFF !important;
 }
 .btn-red{
     background-color: #FC6B6B;
@@ -28,40 +39,50 @@ main{
 .btn-outline-green{
     border: 1px solid #89C34A;
     background-color: #FFFFFF;
-    color: #89C34A;
+    color: #89C34A !important;
+}
+.bg-green{
+    background: linear-gradient(90deg, rgba(98,186,89,1) 0%, rgba(98,186,89,1) 15%, rgba(137,195,74,1) 100%);
+}
+.bg-white{
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.bg-none{
+    background-color: rgba(255, 255, 128, 0);
 }
 .input-outline-green{
     border: 1px solid #89C34A;
     background-color: #FFFFFF;
     color: #000000;
+    border-radius: 8px;
 }
 .text-green{
     color: #89C34A;
 }
+.text-red{
+    color: #FC6B6B;
+}
 .text-white{
+    color: #FFFFFF !important;
+}
+.text-black{
     color: #000000;
 }
+
 .svg{
     width: 24px;
     height: 24px;
 }
-#sidebar{
-    background-color: #89C34A;
-    background: linear-gradient(90deg, rgba(98,186,89,1) 0%, rgba(98,186,89,1) 11%, rgba(137,195,74,1) 100%);
-    padding: 13px 25px 13px 25px;
+.line{
+    height: 6px;
+    width: 288px;
 }
-#sidebar a:hover{
-    transform: scale(1.1);
+.border-green{
+    border-style: solid;
+    border-width: 2px;
+    border-image: repeating-linear-gradient(90deg, rgba(98,186,89,1) 0%, rgba(98,186,89,1) 15%, rgba(137,195,74,1) 100%) 100;
 }
-#sidebar li a{
-    color: #FFFFFF;
-}
-#sidebar li button a{
-    color: #000000;
-    font-size: 12px;
-}
-
-#navbar a:hover{
-    color: #62ba59 !important;
-    transform: scale(1.25);
+.error{
+    color:
 }
