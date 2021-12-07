@@ -118,11 +118,13 @@ public class UserService implements UserDetailsService {
     public void payAContact(PayContactForm payContactForm, User user) {
         if (!payContactForm.getEmail().equals(user.getEmail())
                 && user.getAccount().getBalance() > payContactForm.getAmount()) {
+
             User receiver = userRepository.findByEmail(payContactForm.getEmail())
                     .orElseThrow(() -> new RuntimeException("User with email not found"));
             Transaction transaction = setTransactionWithPayContactForm(user, receiver, payContactForm);
             user.getAccount().minus(transaction.getAmountBeforeFee());
             userRepository.save(user);
+
             Transaction transactionReceiver = setTransactionWithPayContactForm(receiver, user, payContactForm);
             receiver.getAccount().plus(transactionReceiver.getAmountAfterFee());
             userRepository.save(receiver);
@@ -138,6 +140,7 @@ public class UserService implements UserDetailsService {
         transaction.setAmountBeforeFee(form.getAmount());
         transaction.setAmountAfterFee(form.getAmount() * 0.95);
         transactionRepository.save(transaction);
+
         return transaction;
     }
 

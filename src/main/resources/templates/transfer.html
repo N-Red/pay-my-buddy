@@ -12,8 +12,10 @@
             <li class="list-group-item list-group-flush bg-none border-0">
                 <a type="button" href="#" th:href="@{/add-money}">
                     <div class="text-center text-white">Balance</div>
-                    <div class="text-center bg-white text-black p-2"><span
-                            th:text="${user.account.balance}">Balance</span><span>€</span></div>
+                    <div class="text-center bg-white text-black p-2">
+                        <span th:text="${user.account.balance}">Balance</span>
+                        <span>€</span>
+                    </div>
                 </a>
             </li>
             <li class="list-group-item list-group-flush bg-none border-0">
@@ -27,15 +29,15 @@
                         src="img/pay.svg"><span>Pay a Contact</span></a>
             </li>
             <li class="list-group-item list-group-flush bg-none border-0">
-                <a type="button" href="#"><img src="img/transaction.svg"><span>My Transactions</span></a>
+                <a type="button" href="#" th:href="@{/transactions}"><img src="img/transaction.svg"><span>My Transactions</span></a>
             </li>
             <li class="list-group-item list-group-flush bg-none border-0">
-                <a type="button" href="#"><img src="img/contact.svg"><span>My Contacts</span></a>
+                <a type="button" href="#" th:href="@{/contacts}"><img src="img/contact.svg"><span>My Contacts</span></a>
             </li>
         </ul>
     </div>
     <div class="container mt-5">
-        <div class="row">
+        <div class="row mb-5">
             <div id="search-transaction" class="col-md-3 col-12 container border-green p-3">
                 <h2 class="text-green text-center mb-5">Search</h2>
                 <form class="form" th:action="@{/transfer}" th:object="${searchTransactionForm}" method="get">
@@ -112,70 +114,6 @@
                             <td th:text="${transaction.to.email}">Contact</td>
                             <td th:text="${transaction.amountBeforeFee}">Amount</td>
                             <td th:text="${transaction.description}">Description</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div id="search-connection" class="col-md-3 col-12 container border-green p-3">
-                <h2 class="text-green text-center mb-5">Search</h2>
-                <form class="form" th:action="@{/transfer}" th:object="${searchConnectionForm}" method="get">
-                    <div class="mt-2">
-                        <label class="text-green"><u>Email :</u></label>
-                        <div class="row justify-content-around">
-                            <div class="offset-1">
-                                <input type="text" placeholder="email" name="email" class="col-10 input-outline-green"
-                                       th:name="email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <label class="text-green"><u>First Name :</u></label>
-                        <div class="row justify-content-around">
-                            <div class="offset-1">
-                                <input type="text" placeholder="First Name" name="firstName" class="col-10 input-outline-green"
-                                       th:name="firstName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <label class="text-green"><u>Last Name :</u></label>
-                        <div class="row justify-content-around">
-                            <div class="offset-1">
-                                <input type="text" placeholder="Last Name" name="lastName" class="col-10 input-outline-green"
-                                       th:name="lastName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                            <span>
-                                <input type="submit" value="Search" class="btn btn-sm btn-green col-5">
-                            </span>
-                        <span>
-                                <button type="reset" class="btn btn-sm btn-red col-5 offset-1">Reset</button>
-                            </span>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-8 offset-md-1 col-12 offset-0">
-                <h2 class="text-green">My Connections</h2>
-                <div id="connections-table" class="border-green text-center">
-                    <table class="table">
-                        <thead class="bg-green">
-                        <tr>
-                            <th class="text-white">Email</th>
-                            <th class="text-white">FirstName</th>
-                            <th class="text-white">LastName</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="connection : ${connections}">
-                            <td th:text="${connection.user2.email}">Email</td>
-                            <td th:text="${connection.user2.firstName}">FirstName</td>
-                            <td th:text="${connection.user2.lastName}">LastName</td>
-
                         </tr>
                         </tbody>
                     </table>

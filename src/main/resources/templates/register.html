@@ -30,21 +30,24 @@
                     <div class="row mb-2">
                         <div>Last Name</div>
                         <div>
-                            <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control input-outline-green">
+                            <input type="text" th:field="*{lastName}" placeholder="Last Name"
+                                   class="form-control input-outline-green">
                             <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-red"></p>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div>Email</div>
                         <div>
-                            <input type="email" th:field="*{email}" placeholder="Email" class="form-control input-outline-green">
+                            <input type="email" th:field="*{email}" placeholder="Email"
+                                   class="form-control input-outline-green">
                             <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red"></p>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div>Password</div>
                         <div>
-                            <input type="password" th:field="*{password}" placeholder="Password" class="form-control input-outline-green">
+                            <input type="password" th:field="*{password}" placeholder="Password"
+                                   class="form-control input-outline-green">
                             <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red"></p>
                         </div>
                     </div>

@@ -33,24 +33,42 @@ public class TransferController {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    @GetMapping("/transfer")
-    public String getProfilePage(Model model, @RequestParam(value = "amountMin", required = false) Double amountMin,
-                                 @RequestParam(value = "amountMax", required = false) Double amountMax,
-                                 @RequestParam(value = "startDate", required = false) String startDate,
-                                 @RequestParam(value = "endDate", required = false) String endDate,
-                                 @RequestParam(value = "email", required = false) String email,
-                                 @RequestParam(value = "description", required = false) String description) {
+    @GetMapping({"/transfer", "/transactions"})
+    public String getTransferTransactionPage(Model model,
+                                             @RequestParam(value = "amountMin", required = false) Double amountMin,
+                                             @RequestParam(value = "amountMax", required = false) Double amountMax,
+                                             @RequestParam(value = "startDate", required = false) String startDate,
+                                             @RequestParam(value = "endDate", required = false) String endDate,
+                                             @RequestParam(value = "email", required = false) String email,
+                                             @RequestParam(value = "description", required = false) String description) {
+
         User user = userService.findByEmail(getAuthentication().getName());
         List<Transaction> transactionList = transactionService.findAllTransactionByUser(user);
-        List<Connection> collectionList = connectionService.findConnectionByUser(user);
+        List<Connection> connectionList = connectionService.findConnectionByUser(user);
 
         if (amountMax != null || amountMin != null || startDate != null || endDate != null || email != null || description != null) {
             transactionList = transactionService.findTransactionByUserWithFilters(user, amountMin, amountMax, startDate, endDate, email, description);
         }
+
         model.addAttribute("user", user);
         model.addAttribute("transactions", transactionList);
-        model.addAttribute("connections", collectionList);
         return "transfer";
+    }
+
+    @GetMapping("/contacts")
+    public String getTransferContactsPage(Model model,
+                                          @RequestParam(value = "email", required = false) String email,
+                                          @RequestParam(value = "firstName", required = false) String firstName,
+                                          @RequestParam(value = "lastName", required = false) String lastName) {
+        User user = userService.findByEmail(getAuthentication().getName());
+        List<Connection> connectionList = connectionService.findConnectionByUser(user);
+        if (email != null || firstName != null || lastName != null) {
+            System.out.println(" in filters controller");
+            connectionList = connectionService.findConnectionByUserWithFilters(user, email, firstName, lastName);
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("connections", connectionList);
+        return "contacts";
     }
 
     @GetMapping("/add-money")

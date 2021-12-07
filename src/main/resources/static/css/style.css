@@ -19,13 +19,8 @@ a:hover{
     transform: scale(1.1);
 }
 /* ID */
-#transactions-table , #connections-table{
-    min-height: 300px;
-    border-radius: 0px;
-}
 #search-transaction, #search-connection{
   border-width: 1px;
-  max-height: 400px;
 }
 /* CLASS */
 .btn-green{
@@ -33,7 +28,7 @@ a:hover{
     color: #FFFFFF !important;
 }
 .btn-red{
-    background-color: #FC6B6B;
+    background-color: #FC6B6B !important;
     color: #FFFFFF;
 }
 .btn-outline-green{

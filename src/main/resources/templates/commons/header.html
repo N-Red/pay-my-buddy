@@ -1,49 +1,12 @@
 <header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <!--    <div class="container">-->
-    <!--        <div class="row">-->
-    <!--            <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">-->
-    <!--                <a class="navbar-brand" th:href="@{/index}"><img src="img/brand.svg"></a>-->
-    <!--                <button class="navbar-toggler" type="button" data-toggle="collapse"-->
-    <!--                        data-target="#navbarSupportedContent"-->
-    <!--                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--                    <span class="navbar-toggler-icon"></span>-->
-    <!--                </button>-->
-    <!--                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">-->
-    <!--                    <ul class="navbar-nav mr-auto">-->
-    <!--                        <li class="nav-item">-->
-    <!--                            <a class="nav-link" th:href="@{/index}">Home</a>-->
-    <!--                        </li>-->
-    <!--                        <li class="nav-item">-->
-    <!--                            <a class="nav-link" th:href="@{/transfer}">Transfer</a>-->
-    <!--                        </li>-->
-    <!--                        <li class="nav-item">-->
-    <!--                            <a class="nav-link" th:href="@{/contact}">Contact</a>-->
-    <!--                        </li>-->
-    <!--                        <li class="nav-item">-->
-    <!--                            <a class="nav-link" th:href="@{/profile}">Profile</a>-->
-    <!--                        </li>-->
-    <!--                        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">-->
-    <!--                            <a class="nav-link" th:href="@{/admin}">Admin</a>-->
-    <!--                        </li>-->
-    <!--                        <li class="nav-item" sec:authorize="isAnonymous()">-->
-    <!--                            <a class="nav-link" th:href="@{/login}">-->
-    <!--                                <button type="button" class="btn btn-green btn-sm align-top">Log in</button>-->
-    <!--                            </a>-->
-    <!--                        </li>-->
-    <!--                        <li class="nav-item" sec:authorize="isAuthenticated()">-->
-    <!--                            <a class="nav-link" th:href="@{/logout}">-->
-    <!--                                <button type="button" class="btn btn-red btn-sm align-top">Log out</button>-->
-    <!--                            </a>-->
-    <!--                        </li>-->
-    <!--                    </ul>-->
-    <!--                </div>-->
-    <!--            </nav>-->
-    <!--        </div>-->
-    <!--    </div>-->
     <div class="container-fluid mb-2">
-        <nav class="navbar navbar-expand-lg">
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" th:href="@{/index}"><img src="img/brand.svg"></a>
-            <div class="collapse navbar-collapse justify-content-around">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a th:href="@{/index}" class="nav-link text-black">Home</a>
@@ -56,6 +19,9 @@
                     </li>
                     <li class="nav-item">
                         <a th:href="@{/profile}" class="nav-link text-black">Profile</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link text-black" th:href="@{/admin}">Admin</a>
                     </li>
                 </ul>
             </div>

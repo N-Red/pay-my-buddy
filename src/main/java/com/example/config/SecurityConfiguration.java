@@ -51,18 +51,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("email")
-                    .defaultSuccessUrl("/transfer")
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/transfer")
+                .permitAll()
                 .and()
-                    .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login?logout")
-                    .permitAll();
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
     }
 
 }
+
